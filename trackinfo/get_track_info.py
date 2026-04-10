@@ -133,6 +133,7 @@ def get_track_info(svg_file, path_index=0, track_width=10, N=2000, sigma=9,
                    start_point_index=None, horizontal_flip=False, vertical_flip=False, change_direction=False,
                    original_track_length=None):
     centerline = extract_centerline_raw(svg_file, N, path_index)
+
     if start_point_index is not None:
         centerline = np.vstack((centerline[start_point_index:], centerline[:start_point_index]))
 
