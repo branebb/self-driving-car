@@ -19,16 +19,16 @@ import numpy as np
 # F1 gear ratios (realistic approximation).
 # Each value = how many times the engine spins per one wheel rotation.
 GEAR_RATIOS = {
-    'R': -2.50,   # Reverse
+    'R': -4.50,   # Reverse
     'N':  0.00,   # Neutral
-    1:    3.20,   # 1st - max torque multiplication, low speed
-    2:    2.19,
-    3:    1.61,
-    4:    1.27,
-    5:    1.03,
-    6:    0.85,
-    7:    0.71,
-    8:    0.61,   # 8th - least torque, max speed
+    1:    7.00,   # shifts up at  ~73 km/h  (real F1: ~70-80 km/h)
+    2:    5.00,   # shifts up at ~103 km/h
+    3:    3.75,   # shifts up at ~137 km/h
+    4:    2.95,   # shifts up at ~174 km/h
+    5:    2.40,   # shifts up at ~214 km/h
+    6:    1.98,   # shifts up at ~259 km/h
+    7:    1.71,   # shifts up at ~300 km/h
+    8:    1.52,   # top speed   ~370 km/h at 15 000 RPM
 }
 
 FINAL_DRIVE_RATIO = 3.27   # differential ratio (always applied on top of gear ratio)
