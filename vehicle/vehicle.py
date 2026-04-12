@@ -67,3 +67,23 @@ class Car:
         rotated[:, 1] += cy
 
         return rotated
+
+
+class newCar():
+    def __init__(self, position, heading, velocity):
+        self.position = np.array(position, dtype=float) #current centered position, updated outside of this class, car is rectangle
+        self.heading = heading #in radians, 0 means facing right
+        self.velocity = velocity #current velocity, updated outside of this class
+        self.width = 1.9 #fixed
+        self.length = 3.9 #fixed
+        self.tire_width = 0.29 #fixed
+        self.tire_length = 0.705 #fixed
+        self.tire_angle = 0.0 #current angle, from -15 to 15 degrees, updated outside of this class
+        self.throttle = 0.0 #current throttle, from 0 do 1, updated outside of this class
+        self.brake = 0.0 #current brake, from 0 to 1, updated outside of this class
+        self.sterring = 0.0 #current steering, from -180 to 180 degrees, updated outside of this class
+        
+
+
+
+
