@@ -84,6 +84,9 @@ class newCar():
         self.sterring = 0.0 #current steering, from -180 to 180 degrees, updated outside of this class
         
 
+    def update(self, velocity):
+        self.velocity = velocity
+        
 
 
 
