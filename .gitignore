@@ -3,3 +3,4 @@ exp/
 experimental_vehicle/
 simple_rl/
 _smoke_test.py
+neat_newcar/
