@@ -88,7 +88,9 @@ class newCar():
     RPM_REDLINE        = 15000
     AERO_DRAG_K        = 0.5 * 0.7 * 1.5 * 1.225   # 0.5 * Cd * A * rho
     ROLLING_RESIST     = 0.015                        # dimensionless coefficient
-    MAX_BRAKE_FORCE    = 25000   # will need to update once downforace is implemented
+    AERO_DOWNFORCE_K   = 0.5 * 3.5 * 1.5 * 1.225
+    BRAKE_FRICTION     = 1.8
+    
     ENGINE_BRAKE_COEFF = 1500
     TORQUE_A = 50       # Nm baseline
     TORQUE_B = 380      # Nm peak above baseline
@@ -131,7 +133,6 @@ class newCar():
         self.tire_angle = self.steering / 12.0
         return
     
-
     def _update_heading(self, dt):
         self.heading += (self.velocity / self.wheel_base) * np.tan(np.deg2rad(self.tire_angle)) * dt
         return 
@@ -145,7 +146,6 @@ class newCar():
         self.brake     = np.clip(self.brake, 0.0, 1.0)
         return
 
-
     def _update_velocity(self, dt):
         self.rpm = self._rpm_from_velocity(self.velocity, self.gear)
         self._auto_shift()
@@ -156,7 +156,8 @@ class newCar():
         engine_brake  = self.ENGINE_BRAKE_COEFF * (self.rpm / self.RPM_REDLINE) if self.throttle < 0.05 else 0.0
         drag_force    = self.AERO_DRAG_K * self.velocity ** 2
         rolling_force = self.ROLLING_RESIST * self.CAR_MASS * 9.81
-        brake_force   = self.brake * self.MAX_BRAKE_FORCE
+        downforce     = self.AERO_DOWNFORCE_K * self.velocity ** 2
+        brake_force   = self.brake * (self.CAR_MASS * 9.81 + downforce) * self.BRAKE_FRICTION
         if self.velocity > 0.1:
             resistance = drag_force + rolling_force + brake_force + engine_brake
         else:
